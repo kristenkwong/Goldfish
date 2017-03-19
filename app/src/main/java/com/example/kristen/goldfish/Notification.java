@@ -5,6 +5,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.PowerManager;
 import android.support.v7.app.NotificationCompat;
@@ -24,24 +26,41 @@ public class Notification {
         private static final int NOTIFICATION_DEFAULT_ON = 1000;
         private static final int NOTIFICATION_DEFAULT_OFF = 4000;
         private static final int NOTIFICATION_DEFAULT_COLOR = Color.YELLOW;
+        private static NotificationManager notifyMgr;
 
-        public static void notificatePush(Context context, int notificationId, String contentTitle, String contentText, Intent intent, Window window) {
+
+
+    public static void notificatePush(Context context, int notificationId, String contentTitle, String contentText, Intent intent, Window window) {
+
+
             NotificationCompat.Builder mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(context)
-                    .setSmallIcon(R.drawable.dinia)
+                    .setPriority(1)
+                    .setSmallIcon(R.drawable.almost_new_goldfish)
                     .setContentTitle(contentTitle)
                     .setContentText(contentText)
                     .setVisibility(visibility);
                   //  .setTicker(tickerText);
 
             // Because clicking the notification opens a new ("special") activity, there's no need to create an artificial back stack.
+            // took resultPending intent
             PendingIntent resultPendingIntent = PendingIntent.getActivity(context, notificationId, intent, PendingIntent.FLAG_ONE_SHOT);
             mBuilder.setContentIntent(resultPendingIntent);
             mBuilder.setAutoCancel(true);
            // mBuilder.setOngoing(true);
             mBuilder.setOnlyAlertOnce(true);
 
+        Bitmap notificationLargeIconBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.almost_new_goldfish);
+        mBuilder.setLargeIcon(notificationLargeIconBitmap);
+
+        PendingIntent dismissIntent = NotificationActivity.getDismissIntent(notificationId, context);
+        mBuilder.addAction(R.drawable.dinia, "dismiss", dismissIntent);
+
+      //  Intent triggerIntent = new Intent(getApplicationContext(), ActivityToLaunch.class);
+     //   triggerIntent.putExtra(Intent.EXTRA_KEY_EVENT, dism);
+
+
             // Gets an instance of the NotificationManager service
-            NotificationManager notifyMgr = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            notifyMgr = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
             // Builds the notification and issues it.
             notifyMgr.notify(notificationId, mBuilder.build());
@@ -80,6 +99,12 @@ public class Notification {
 
 
 
+
+
+        }
+        public void dismiss() {
+          //notifyMgr.cancel(1);
+            notifyMgr.cancelAll();
         }
 
     /*

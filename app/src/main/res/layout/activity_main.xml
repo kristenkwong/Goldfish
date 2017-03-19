@@ -35,7 +35,7 @@
     android:orientation="vertical"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
-    android:background="#A7FFF6"
+    android:background="#C7F5F5"
     android:gravity="center_horizontal|center_vertical"
     android:weightSum="1">
 
@@ -45,7 +45,8 @@ android:layout_height="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:gravity="center"
+        android:gravity="center_horizontal"
+        android:layout_margin="5dp"
         android:text="goldfish"
         android:textSize="60sp"
         android:textColor="#ffff"
@@ -53,45 +54,50 @@ android:layout_height="fill_parent"
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="match_parent"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/new_gold_fish_logo" />
+        app:srcCompat="@drawable/almost_new_goldfish" />
 
     <TextView
         android:id="@+id/intro"
-        android:layout_width="282dp"
-        android:layout_height="50dp"
+        android:layout_width="302dp"
+        android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:gravity="center"
-        android:textSize="23sp"
         android:text="What would you like to remember?"
+        android:textSize="23sp"
+        android:layout_marginTop="65dp"
+        android:paddingBottom="-20dp"
+
         />
+
 
     <EditText
         android:id="@+id/itemName"
-        android:layout_width="280dp"
+        android:layout_width="227dp"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:ems="10"
         android:inputType="text"
         android:text=""
+        android:layout_marginTop="5dp"
         />
 
     <Button
 
         android:id="@+id/reminderButton"
-        android:layout_width="368dp"
-        android:layout_height="236dp"
-        android:layout_gravity="center"
-        android:onClick="setReminder"
-        android:text="Set reminder"
-        android:background="@drawable/goldfish_button"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_marginTop="-40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="57dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/new_goldfish_button"
+        android:onClick="setReminder"
+        android:scaleType="centerCrop"
+        android:text="Set reminder"
 
         />
-
 
 
 </LinearLayout>
