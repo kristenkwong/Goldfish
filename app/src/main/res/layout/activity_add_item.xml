@@ -33,14 +33,6 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
-
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -48,7 +40,18 @@
         android:layout_marginLeft="120px"
         android:layout_marginTop="400px"
         android:text="Add item"
+        app:layout_anchor="@+id/container"
         tools:layout_editor_absoluteX="148dp"
         tools:layout_editor_absoluteY="194dp" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120px"
+        android:layout_marginTop="300px"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name" />
 
 </android.support.design.widget.CoordinatorLayout>
