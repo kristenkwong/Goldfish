@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+       // mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 //        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_SIGNIFICANT_MOTION);
 //
 //        mTriggerEventListener = new TriggerEventListener() {
@@ -43,56 +43,71 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+//
+//        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+//        mSensorEventListener = new SensorEventListener() {
+//            @Override
+//
+//            public void onSensorChanged(SensorEvent sensorEvent) {
+//                if (sensorEvent.accuracy == SensorManager.SENSOR_STATUS_UNRELIABLE)
+//                {
+//                    return;
+//                }
+//
+//                if (sensorEvent.values[0] > 3.5 || sensorEvent.values[1] > 3.5 || sensorEvent.values[2] > 3.5 || sensorEvent.values[0] < -3.5 || sensorEvent.values[1] < -3.5 || sensorEvent.values[2] < -3.5) {
+//                    Toast.makeText(getApplicationContext(), "PINIA IS THE BEST", Toast.LENGTH_SHORT).show();
+//                    Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+//                    v.vibrate(500);
+//                }
+//            }
+//
+//            public void onAccuracyChanged(Sensor sensor, int i) {
+//
+//            }
+//        };
 
+
+        /*
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
         mSensorEventListener = new SensorEventListener() {
-            @Override
+            public void onSensorChanged(SensorEvent event) {
+                // alpha is calculated as t / (t + dT)
+                // with t, the low-pass filter's time-constant
+                // and dT, the event delivery rate
 
-            public void onSensorChanged(SensorEvent sensorEvent) {
-//                if (sensorEvent.accuracy == SensorManager.SENSOR_STATUS_UNRELIABLE)
-//                {
-//                    return;
-//                }
+                final float alpha = 0.8;
+               // final float alpha = 0.8;
 
-                if (sensorEvent.values[0] > 3.5 || sensorEvent.values[1] > 3.5 || sensorEvent.values[2] > 3.5 || sensorEvent.values[0] < -3.5 || sensorEvent.values[1] < -3.5 || sensorEvent.values[2] < -3.5) {
-                    Toast.makeText(getApplicationContext(), "PINIA IS THE BEST", Toast.LENGTH_SHORT).show();
-                    Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                    v.vibrate(500);
-                }
+                double[] gravity = new double[3];
+                gravity[0] = alpha * gravity[0] + (1 - alpha) * event.values[0];
+                gravity[1] = alpha * gravity[1] + (1 - alpha) * event.values[1];
+                gravity[2] = alpha * gravity[2] + (1 - alpha) * event.values[2];
+
+                double[] linear_acceleration = new float[3];
+                linear_acceleration[0] = event.values[0] - gravity[0];
+                linear_acceleration[1] = event.values[1] - gravity[1];
+                linear_acceleration[2] = event.values[2] - gravity[2];
             }
 
             public void onAccuracyChanged(Sensor sensor, int i) {
 
+float speed = Math.abs(x + y + z - last_x - last_y - last_z)/ diffTime * 10000;
+
+            if (speed > SHAKE_THRESHOLD) {
+                getRandomNumber();
             }
-        };
-
-            mSensorAcc = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-            mSensorAccEventListener = new SensorEventListener() {
-                @Override
-
-                public void onSensorChanged(SensorEvent sensorEvent) {
-//                if (sensorEvent.accuracy == SensorManager.SENSOR_STATUS_UNRELIABLE)
-//                {
-//                    return;
-//                }
-
-                    if (sensorEvent.values[0] > 3.5 || sensorEvent.values[1] > 3.5 || sensorEvent.values[2] > 3.5 || sensorEvent.values[0] < -3.5 || sensorEvent.values[1] < -3.5 || sensorEvent.values[2] < -3.5) {
-                        Toast.makeText(getApplicationContext(), "VIVIAN IS THE BEST", Toast.LENGTH_SHORT).show();
-                        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                        v.vibrate(500);
-                    }
-                }
-
-                @Override
-            public void onAccuracyChanged(Sensor sensor, int i) {
-
             }
+
         };
+        */
 
 
 
 
-        mSensorManager.registerListener(mSensorEventListener, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
+
+
+
+       // mSensorManager.registerListener(mSensorEventListener, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
 
        // mSensorManager.requestTriggerSensor(mTriggerEventListener, mSensor);
 
@@ -116,8 +131,8 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (sensorEvent.values[0] > 5 || sensorEvent.values[1] > 5 || sensorEvent.values[2] > 5) {
-                    Toast.makeText(getApplicationContext(), "PINIA IS THE BEST", Toast.LENGTH_SHORT).show();
+                if (sensorEvent.values[0] > 3.5 || sensorEvent.values[1] > 3.5 || sensorEvent.values[2] > 3.5 || sensorEvent.values[0] < -3.5 || sensorEvent.values[1] < -3.5 || sensorEvent.values[2] < -3.5) {
+                    Toast.makeText(getApplicationContext(), "Don't forget to... " + itemName, Toast.LENGTH_SHORT).show();
                     Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     v.vibrate(500);
                 }
@@ -138,6 +153,9 @@ public class MainActivity extends AppCompatActivity {
 
         Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         v.vibrate(500);
+
+        Notification.notificatePush(getBaseContext(), 1, "goldfish", itemName, getIntent());
+
 
 
 //        startMotionSensor();

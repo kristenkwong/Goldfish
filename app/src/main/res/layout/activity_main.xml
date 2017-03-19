@@ -55,7 +55,7 @@ android:layout_height="fill_parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="Set reminder"
-        android:onClick="setReminder()"
+        android:onClick="setReminder"
     android:layout_gravity = "center">
 </Button>
 
