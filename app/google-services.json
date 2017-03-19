@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "491979362289",
+    "firebase_url": "https://goldfish-f3129.firebaseio.com",
+    "project_id": "goldfish-f3129",
+    "storage_bucket": "goldfish-f3129.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491979362289:android:33ba1dfd03d82898",
+        "android_client_info": {
+          "package_name": "com.example.kristen.goldfish"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "491979362289-j85gsa9k3sq10vm2pstr7iosa2c682ir.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7C--YRfUdR8H69t0u2i-EvDkbez-CeJc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
