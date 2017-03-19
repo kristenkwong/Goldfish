@@ -1,32 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.kristen.goldfish.MainActivity">
+<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1"-->
+    <!--android:gravity="center"-->
+    <!--android:orientation="vertical"-->
+    <!--tools:context="com.example.kristen.goldfish.MainActivity">-->
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add item"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="194dp" />
+    <!--<TextView-->
+        <!--android:id="@+id/textView"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="495dp"-->
+        <!--android:gravity="center"-->
+        <!--android:paddingTop="200px"-->
+        <!--android:text="TextView"-->
+        <!--tools:layout_editor_absoluteX="8dp"-->
+        <!--tools:layout_editor_absoluteY="8dp" />-->
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="List"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="273dp" />
+    <!--<Button-->
+        <!--android:id="@+id/button3"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:text="Button"-->
+        <!--android:gravity="center_vertical|center_horizontal"-->
+        <!--tools:layout_editor_absoluteX="136dp"-->
+        <!--tools:layout_editor_absoluteY="8dp" />-->
+
+<!--</android.support.constraint.ConstraintLayout>-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+    android:gravity="center_horizontal|center_vertical">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:id="@+id/intro"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="What item would you like to remember?" />
+
+    <EditText
+        android:id="@+id/itemName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Goldfish"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="130dp" />
-</android.support.constraint.ConstraintLayout>
+        android:ems="10"
+        android:inputType="text"
+        android:text="" />
+
+    <Button android:id="@+id/reminderButton"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Set reminder"
+        android:onClick="setReminder()"
+    android:layout_gravity = "center">
+</Button>
+
+</LinearLayout>
