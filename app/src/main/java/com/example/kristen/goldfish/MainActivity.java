@@ -137,7 +137,7 @@ float speed = Math.abs(x + y + z - last_x - last_y - last_z)/ diffTime * 10000;
                 }
 
                 if (sensorEvent.values[0] > 3.5 || sensorEvent.values[1] > 3.5 || sensorEvent.values[2] > 3.5 || sensorEvent.values[0] < -3.5 || sensorEvent.values[1] < -3.5 || sensorEvent.values[2] < -3.5) {
-                    Toast.makeText(getApplicationContext(), "Don't forget to... " + itemName, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Don't forget to " + itemName, Toast.LENGTH_SHORT).show();
                     v.vibrate(500);
 
                     Notification.notificatePush(getBaseContext(), 1, "goldfish", "Don't forget to..." + itemName, getIntent(), getWindow());
