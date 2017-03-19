@@ -1,6 +1,7 @@
 package com.example.kristen.goldfish;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -24,12 +25,16 @@ public class MainActivity extends AppCompatActivity {
     // ADDED
     private SensorEventListener mSensorAccEventListener;
     private String itemName;
+    private Vibrator v;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        EditText editText = (EditText) findViewById(R.id.itemName);
+        editText.setBackgroundColor(Color.WHITE);
 
        // mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 //        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_SIGNIFICANT_MOTION);
@@ -133,8 +138,11 @@ float speed = Math.abs(x + y + z - last_x - last_y - last_z)/ diffTime * 10000;
 
                 if (sensorEvent.values[0] > 3.5 || sensorEvent.values[1] > 3.5 || sensorEvent.values[2] > 3.5 || sensorEvent.values[0] < -3.5 || sensorEvent.values[1] < -3.5 || sensorEvent.values[2] < -3.5) {
                     Toast.makeText(getApplicationContext(), "Don't forget to... " + itemName, Toast.LENGTH_SHORT).show();
-                    Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     v.vibrate(500);
+
+                    Notification.notificatePush(getBaseContext(), 1, "goldfish", "Don't forget to..." + itemName, getIntent(), getWindow());
+
+
                 }
             }
 
@@ -144,23 +152,13 @@ float speed = Math.abs(x + y + z - last_x - last_y - last_z)/ diffTime * 10000;
             }
         };
 
-
         mSensorManager.registerListener(mSensorEventListener, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
 
         // mSensorManager.requestTriggerSensor(mTriggerEventListener, mSensor);
 
 
-
-        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        v.vibrate(500);
-
-        Notification.notificatePush(getBaseContext(), 1, "goldfish", itemName, getIntent());
-
-
-
-//        startMotionSensor();
-
-
+        Toast.makeText(getApplicationContext(), "We gotchu", Toast.LENGTH_SHORT).show();
+        v.vibrate(100);
 //        Intent intent = new Intent(this, DisplayMessageActivity.class);
 //        EditText editText = (EditText) findViewById(R.id.editText);
 //        String message = editText.getText().toString();
